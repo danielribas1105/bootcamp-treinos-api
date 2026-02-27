@@ -5,6 +5,7 @@ import fastifySwagger from "@fastify/swagger"
 import fastifyApiReference from "@scalar/fastify-api-reference"
 import Fastify from "fastify"
 import {
+	jsonSchemaTransform,
 	serializerCompiler,
 	validatorCompiler,
 	ZodTypeProvider,
@@ -20,20 +21,22 @@ const app = Fastify({
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
 
-// 1️⃣ Swagger (gerador) DEVE vir primeiro
 await app.register(fastifySwagger, {
 	openapi: {
 		info: {
 			title: "Bootcamp Treinos API",
-			version: "1.0.0",
+			description: "API para bootcamp de treinos do FSC",
+			version: "0.0.1",
 		},
+		servers: [
+			{
+				description: "Localhost",
+				url: "http://localhost:3000",
+			},
+		],
 	},
+	transform: jsonSchemaTransform,
 })
-
-// 2️⃣ Swagger UI depende do swagger acima
-/* await app.register(fastifySwaggerUI, {
-	routePrefix: "/docs",
-}) */
 
 await app.register(fastifyCors, {
 	origin: ["http://localhost:3000"],
@@ -52,7 +55,7 @@ await app.register(fastifyApiReference, {
 			{
 				title: "Auth API",
 				slug: "auth-api",
-				url: "/api/auth/open-api/generate-shema",
+				url: "/api/auth/open-api/generate-schema",
 			},
 		],
 	},

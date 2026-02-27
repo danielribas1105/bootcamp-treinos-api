@@ -37,3 +37,18 @@ export type WorkoutDay = Prisma.WorkoutDayModel
  * 
  */
 export type WorkoutExercise = Prisma.WorkoutExerciseModel
+/**
+ * Model Session
+ * 
+ */
+export type Session = Prisma.SessionModel
+/**
+ * Model Account
+ * 
+ */
+export type Account = Prisma.AccountModel
+/**
+ * Model Verification
+ * 
+ */
+export type Verification = Prisma.VerificationModel

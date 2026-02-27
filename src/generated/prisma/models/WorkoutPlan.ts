@@ -393,14 +393,6 @@ export type WorkoutPlanUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.WorkoutPlanScalarWhereInput | Prisma.WorkoutPlanScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
 export type WorkoutPlanCreateNestedOneWithoutWorkoutDaysInput = {
   create?: Prisma.XOR<Prisma.WorkoutPlanCreateWithoutWorkoutDaysInput, Prisma.WorkoutPlanUncheckedCreateWithoutWorkoutDaysInput>
   connectOrCreate?: Prisma.WorkoutPlanCreateOrConnectWithoutWorkoutDaysInput
