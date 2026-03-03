@@ -130,7 +130,7 @@ export class GetStats {
 		const allSessions = await prisma.workoutSession.findMany({
 			where: {
 				workoutDay: { workoutPlanId },
-				completedAt: { not: null },
+				completedAt: { not: undefined },
 			},
 			select: { startedAt: true },
 		})
