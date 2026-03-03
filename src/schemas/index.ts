@@ -56,3 +56,7 @@ export const WorkoutPlanInputSchema = z.object({
 		}),
 	),
 })
+
+export const WorkoutSessionOutputSchema = z.object({
+	workoutSessionId: z.uuid(),
+})

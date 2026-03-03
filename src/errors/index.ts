@@ -4,3 +4,30 @@ export class NotFoundError extends Error {
 		this.name = "NotFoundError"
 	}
 }
+
+export class UnauthorizedError extends Error {
+	constructor(message: string) {
+		super(message)
+		this.name = "UnauthorizedError"
+	}
+}
+
+export class WorkoutPlanNotActiveError extends Error {
+	constructor(message: string) {
+		super(message)
+		this.name = "WorkoutPlanNotActiveError"
+	}
+}
+
+export class SessionAlreadyStartedError extends Error {
+	constructor(message: string) {
+		super(message)
+		this.name = "SessionAlreadyStartedError"
+	}
+}
+export class ConflictError extends Error {
+	constructor(message: string) {
+		super(message)
+		this.name = "ConflictError"
+	}
+}
