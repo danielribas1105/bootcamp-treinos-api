@@ -16,6 +16,7 @@ import { auth } from "../lib/auth.js"
 import { GetUserTrainData } from "../use-cases/GetUserTrainData.js"
 import { UpsertUserTrainData } from "../use-cases/UpsertUserTrainData.js"
 import { CreateWorkoutPlan } from "../use-cases/CreateWorkoutPlan.js"
+import { ListWorkoutPlans } from "../use-cases/ListWorkoutPlans.js"
 
 const SYSTEM_PROMPT = `Você é um personal trainer virtual especialista em montagem de planos de treino personalizados.
 
@@ -163,7 +164,6 @@ export const aiRoutes = async (app: FastifyInstance) => {
 												"Duração estimada em segundos (0 para dias de descanso)",
 											),
 										coverImageUrl: z
-											.string()
 											.url()
 											.describe(
 												"URL da imagem de capa do dia de treino. Usar as URLs de superior ou inferior conforme o foco muscular do dia.",
