@@ -14,11 +14,11 @@ import z from "zod"
 
 import { NotFoundError } from "./errors/index.js"
 import { auth } from "./lib/auth.js"
-import { workoutPlanRoutes } from "./routes/workout-plan.js"
+import { aiRoutes } from "./routes/ai.js"
 import { homeRoutes } from "./routes/home.js"
 import { meRoutes } from "./routes/me.js"
 import { statsRoutes } from "./routes/stats.js"
-import { aiRoutes } from "./routes/ai.js"
+import { workoutPlanRoutes } from "./routes/workout-plan.js"
 
 const app = Fastify({
 	logger: true,
@@ -37,7 +37,7 @@ await app.register(fastifySwagger, {
 		servers: [
 			{
 				description: "Localhost",
-				url: "http://localhost:3000",
+				url: "http://localhost:3001",
 			},
 		],
 	},
@@ -45,7 +45,7 @@ await app.register(fastifySwagger, {
 })
 
 await app.register(fastifyCors, {
-	origin: ["http://localhost:3000"],
+	origin: ["http://localhost:3001"],
 	credentials: true,
 })
 
