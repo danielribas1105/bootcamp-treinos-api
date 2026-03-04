@@ -18,14 +18,15 @@ import {
 	StartWorkoutSessionSchema,
 	UpdateWorkoutSessionBodySchema,
 	UpdateWorkoutSessionSchema,
+	WorkoutPlanInputSchema,
 	WorkoutPlanSchema,
 } from "../schemas/index.js"
 import { CreateWorkoutPlan } from "../use-cases/CreateWorkoutPlan.js"
+import { GetWorkoutDay } from "../use-cases/GetWorkoutDay.js"
+import { GetWorkoutPlan } from "../use-cases/GetWorkoutPlan.js"
+import { ListWorkoutPlans } from "../use-cases/ListWorkoutPlans.js"
+import { StartWorkoutSession } from "../use-cases/StartWorkoutSession.js"
 import { UpdateWorkoutSession } from "../use-cases/UpdateWorkoutSession.js"
-import { GetWorkoutDay } from "../usecases/GetWorkoutDay.js"
-import { GetWorkoutPlan } from "../usecases/GetWorkoutPlan.js"
-import { ListWorkoutPlans } from "../usecases/ListWorkoutPlans.js"
-import { StartWorkoutSession } from "../usecases/StartWorkoutSession.js"
 
 export const workoutPlanRoutes = async (app: FastifyInstance) => {
 	app.withTypeProvider<ZodTypeProvider>().route({
@@ -79,7 +80,7 @@ export const workoutPlanRoutes = async (app: FastifyInstance) => {
 			summary: "Create a workout plan",
 			body: WorkoutPlanSchema.omit({ id: true }),
 			response: {
-				201: WorkoutPlanSchema,
+				201: WorkoutPlanInputSchema,
 				400: ErrorSchema,
 				401: ErrorSchema,
 				404: ErrorSchema,

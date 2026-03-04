@@ -13,10 +13,10 @@ import z from "zod"
 
 import { WeekDay } from "../generated/prisma/enums.js"
 import { auth } from "../lib/auth.js"
-import { GetUserTrainData } from "../use-cases/GetUserTrainData.js"
-import { UpsertUserTrainData } from "../use-cases/UpsertUserTrainData.js"
 import { CreateWorkoutPlan } from "../use-cases/CreateWorkoutPlan.js"
+import { GetUserTrainData } from "../use-cases/GetUserTrainData.js"
 import { ListWorkoutPlans } from "../use-cases/ListWorkoutPlans.js"
+import { UpsertUserTrainData } from "../use-cases/UpsertUserTrainData.js"
 
 const SYSTEM_PROMPT = `Você é um personal trainer virtual especialista em montagem de planos de treino personalizados.
 
