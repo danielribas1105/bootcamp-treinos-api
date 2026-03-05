@@ -79,6 +79,7 @@ export const aiRoutes = async (app: FastifyInstance) => {
 		method: "POST",
 		url: "/",
 		schema: {
+			operationId: "chat-ai-personal-trainer",
 			tags: ["AI"],
 			summary: "Chat with AI personal trainer",
 		},
