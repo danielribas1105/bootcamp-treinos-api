@@ -1,7 +1,6 @@
 import {
 	NotFoundError,
 	SessionAlreadyStartedError,
-	UnauthorizedError,
 	WorkoutPlanNotActiveError,
 } from "../errors/index.js"
 import { prisma } from "../lib/db.js"
@@ -22,25 +21,25 @@ export class StartWorkoutSession {
 			where: { id: dto.workoutPlanId },
 		})
 
-		if (!workoutPlan) throw new NotFoundError("Workout plan not found")
+		if (!workoutPlan) {
+			throw new NotFoundError("Workout plan not found")
+		}
 
-		if (workoutPlan.userId !== dto.userId)
-			throw new UnauthorizedError("You are not the owner of this workout plan")
+		if (workoutPlan.userId !== dto.userId) {
+			throw new NotFoundError("Workout plan not found")
+		}
 
-		if (!workoutPlan.isActive)
+		if (!workoutPlan.isActive) {
 			throw new WorkoutPlanNotActiveError("Workout plan is not active")
+		}
 
 		const workoutDay = await prisma.workoutDay.findUnique({
-			where: { id: dto.workoutDayId, workoutPlanId: dto.workoutDayId },
-			/* include: { workoutSession: true }, */
+			where: { id: dto.workoutDayId, workoutPlanId: dto.workoutPlanId },
 		})
 
-		if (!workoutDay) throw new NotFoundError("Workout day not found")
-
-		/* if (workoutDay.workoutPlanId !== dto.workoutPlanId)
+		if (!workoutDay) {
 			throw new NotFoundError("Workout day not found")
-		if (workoutDay.workoutSession?.startedAt)
-			throw new ConflictError("Workout session already started") */
+		}
 
 		const existingSession = await prisma.workoutSession.findFirst({
 			where: { workoutDayId: dto.workoutDayId },
