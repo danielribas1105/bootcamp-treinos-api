@@ -19,7 +19,6 @@ import {
 	UpdateWorkoutSessionBodySchema,
 	UpdateWorkoutSessionSchema,
 	WorkoutPlanInputSchema,
-	WorkoutPlanSchema,
 } from "../schemas/index.js"
 import { CreateWorkoutPlan } from "../use-cases/CreateWorkoutPlan.js"
 import { GetWorkoutDay } from "../use-cases/GetWorkoutDay.js"
@@ -80,7 +79,7 @@ export const workoutPlanRoutes = async (app: FastifyInstance) => {
 			operationId: "create-workout-plan",
 			tags: ["Workout Plan"],
 			summary: "Create a workout plan",
-			body: WorkoutPlanSchema.omit({ id: true }),
+			body: WorkoutPlanInputSchema,
 			response: {
 				201: WorkoutPlanInputSchema,
 				400: ErrorSchema,
