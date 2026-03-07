@@ -213,7 +213,6 @@ export const workoutPlanRoutes = async (app: FastifyInstance) => {
 					workoutDayId: request.params.workoutDayId,
 				})
 
-				console.log("sessions:", JSON.stringify(result.sessions))
 				return reply.status(200).send(result)
 			} catch (error) {
 				app.log.error(error)
