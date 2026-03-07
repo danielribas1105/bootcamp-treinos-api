@@ -99,7 +99,7 @@ export const StatsSchema = z.object({
 })
 
 export const HomeDataSchema = z.object({
-	activeWorkoutPlanId: z.uuid(),
+	activeWorkoutPlanId: z.uuid().optional(),
 	todayWorkoutDay: z
 		.object({
 			workoutPlanId: z.uuid(),
@@ -131,7 +131,7 @@ export const GetWorkoutDaySchema = z.object({
 	weekDay: z.enum(WeekDay),
 	exercises: z.array(
 		z.object({
-			id: z.uuid(),
+			id: z.string(),
 			name: z.string(),
 			order: z.number(),
 			workoutDayId: z.uuid(),
@@ -142,10 +142,10 @@ export const GetWorkoutDaySchema = z.object({
 	),
 	sessions: z.array(
 		z.object({
-			id: z.uuid(),
+			id: z.string(),
 			workoutDayId: z.uuid(),
-			startedAt: z.iso.date().optional(),
-			completedAt: z.iso.date().optional(),
+			startedAt: z.iso.datetime().optional(),
+			completedAt: z.iso.datetime().optional(),
 		}),
 	),
 })
@@ -188,7 +188,7 @@ export const ListWorkoutPlansSchema = z.array(
 				coverImageUrl: z.url().optional(),
 				exercises: z.array(
 					z.object({
-						id: z.uuid(),
+						id: z.string(),
 						order: z.number(),
 						name: z.string(),
 						sets: z.number(),
